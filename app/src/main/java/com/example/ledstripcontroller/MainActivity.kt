@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Switch
 import com.google.android.things.pio.Gpio
 import com.google.android.things.pio.PeripheralManager
+import java.io.IOException
 
 /**
  * Skeleton of an Android Things activity.
@@ -35,8 +36,12 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d(TAG, "YESYES")
+        RGB()
 
+        //blink()
+    }
+
+    private fun RGB(){
         redLedSwitch = findViewById(R.id.redLedSwitch)
         greenLedSwitch = findViewById(R.id.greenLedSwitch)
         blueLedSwitch = findViewById(R.id.blueLedSwitch)
@@ -56,14 +61,38 @@ class MainActivity : Activity() {
         blueLedSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
             blueGpio.value = !isChecked
         }
-
-        //blink()
     }
 
     private fun blink(){
         while (true){
             redGpio.value = !redGpio.value
             Thread.sleep(500)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (redGpio != null) {
+            try {
+                redGpio.close()
+            } catch (e: IOException) {
+                Log.e(TAG,"Error on PeripheralIO API", e)
+            }
+        }
+        if (greenGpio != null) {
+            try {
+                redGpio.close()
+            } catch (e: IOException) {
+                Log.e(TAG,"Error on PeripheralIO API", e)
+            }
+        }
+        if (blueGpio != null) {
+            try {
+                redGpio.close()
+            } catch (e: IOException) {
+                Log.e(TAG,"Error on PeripheralIO API", e)
+            }
         }
     }
 }
