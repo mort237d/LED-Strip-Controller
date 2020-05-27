@@ -74,25 +74,16 @@ class MainActivity : Activity() {
         super.onDestroy()
 
         if (redGpio != null) {
-            try {
-                redGpio.close()
-            } catch (e: IOException) {
-                Log.e(TAG,"Error on PeripheralIO API", e)
-            }
+            try { redGpio.close() }
+            catch (e: IOException) { Log.e(TAG,"Error on PeripheralIO API", e) }
         }
         if (greenGpio != null) {
-            try {
-                redGpio.close()
-            } catch (e: IOException) {
-                Log.e(TAG,"Error on PeripheralIO API", e)
-            }
+            try { redGpio.close() }
+            catch (e: IOException) { Log.e(TAG,"Error on PeripheralIO API", e) }
         }
         if (blueGpio != null) {
-            try {
-                redGpio.close()
-            } catch (e: IOException) {
-                Log.e(TAG,"Error on PeripheralIO API", e)
-            }
+            try { redGpio.close() }
+            catch (e: IOException) { Log.e(TAG,"Error on PeripheralIO API", e) }
         }
     }
 }
